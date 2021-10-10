@@ -1,0 +1,17 @@
+- hosts: localhost
+  become: true
+  vars:
+    source_key: "./.ssh/id_ed25519"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+  pre_tasks:
+    - name: update repositories
+      pacman:
+        update_cache: yes
+  tasks:
+    - include: tasks/ssh.yml
+    - include: tasks/zsh.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/node.yml
+    - include: tasks/npm-packages.yml
+    - include: tasks/nvim.yml
+    - include: tasks/pacman-packages.yml
