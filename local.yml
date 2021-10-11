@@ -10,6 +10,7 @@
   tasks:
     - include: tasks/ssh.yml
     - include: tasks/zsh.yml
+    - include: tasks/brew.yml
     - include: tasks/dotfiles.yml
     - include: tasks/node.yml
     - include: tasks/npm-packages.yml

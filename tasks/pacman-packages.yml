@@ -1,5 +1,6 @@
 - name: Install System Packages
   pacman: name={{item}}
+  when: ansible_distribution == 'ArchLinux'
   with_items:
     - ack
     - adobe-source-han-sans-jp-fonts
@@ -63,3 +64,4 @@
   tags:
     - install
     - pacman
+    - linux
