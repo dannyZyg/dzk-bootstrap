@@ -12,7 +12,7 @@
     - include: tasks/zsh.yml
     - include: tasks/brew.yml
     - include: tasks/dotfiles.yml
+    - include: tasks/pacman-packages.yml
     - include: tasks/node.yml
     - include: tasks/npm-packages.yml
     - include: tasks/nvim.yml
-    - include: tasks/pacman-packages.yml

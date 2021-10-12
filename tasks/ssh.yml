@@ -16,6 +16,5 @@
     owner: danny
     group: danny
   tags:
-    - dotfiles
     - install
     - ssh

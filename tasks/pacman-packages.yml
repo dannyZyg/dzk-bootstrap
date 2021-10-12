@@ -1,7 +1,8 @@
 - name: Install System Packages
   pacman: name={{item}}
-  when: ansible_distribution == 'ArchLinux'
   with_items:
+    - acpi
+    - i3-gaps
     - ack
     - adobe-source-han-sans-jp-fonts
     - aegisub
