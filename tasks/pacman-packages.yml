@@ -1,8 +1,15 @@
 - name: Install System Packages
   pacman: name={{item}}
   with_items:
+    - fwupd
+    - dunst
     - acpi
     - i3-gaps
+    - exa
+    - bat
+    - lua
+    - luarocks
+    - fzf
     - ack
     - adobe-source-han-sans-jp-fonts
     - aegisub
