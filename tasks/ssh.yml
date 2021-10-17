@@ -1,7 +1,10 @@
 - name: Ensure .ssh directory exists.
+  become_user:
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
+    owner: danny
+    group: danny
     state: directory
   tags:
     - dotfiles
