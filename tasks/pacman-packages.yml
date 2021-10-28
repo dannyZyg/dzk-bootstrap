@@ -1,6 +1,9 @@
 - name: Install System Packages
+  become: true
   pacman: name={{item}}
   with_items:
+    - mpv
+    - xclip
     - fwupd
     - dunst
     - acpi
