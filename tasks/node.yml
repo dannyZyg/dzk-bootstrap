@@ -1,4 +1,5 @@
 - name: Install nodejs and npm
+  become: true
   pacman:
     name: ["nodejs", "npm"]
   tags:

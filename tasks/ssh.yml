@@ -1,23 +1,21 @@
 - name: Ensure .ssh directory exists.
-  become_user:
+  become_user: "{{ lookup('vars', 'username') }}"
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
-    owner: danny
-    group: danny
     state: directory
   tags:
     - dotfiles
     - install
     - ssh
 - name: Install ssh key
+  become_user: "{{ lookup('vars', 'username') }}"
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
     decrypt: yes
     mode: 0600
-    owner: danny
-    group: danny
   tags:
     - install
     - ssh
+    - dotfiles
