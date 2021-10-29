@@ -33,3 +33,31 @@
   tags:
     - install
     - node
+- name: Install yaml language server
+  npm:
+    name: 'yaml-language-server'
+    global: yes
+  tags:
+    - install
+    - node
+- name: Install vimscript language server
+  npm:
+    name: 'vim-language-server'
+    global: yes
+  tags:
+    - install
+    - node
+- name: Install bash language server
+  npm:
+    name: 'bash-language-server'
+    global: yes
+  tags:
+    - install
+    - node
+- name: Install html language server
+  npm:
+    name: 'vscode-langservers-extracted'
+    global: yes
+  tags:
+    - install
+    - node
