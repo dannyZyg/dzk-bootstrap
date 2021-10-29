@@ -1,27 +1,27 @@
 - name: Install Yarn
   npm:
-    name: yarn
+    name: 'yarn'
     global: yes
   tags:
     - install
     - node
 - name: Install Typescript server
   npm:
-    name: typescript-language-server
+    name: 'typescript-language-server'
     global: yes
   tags:
     - install
     - node
 - name: Install Typescript
   npm:
-    name: typescript
+    name: 'typescript'
     global: yes
   tags:
     - install
     - node
 - name: Install TS-Node
   npm:
-    name: ts-node
+    name: 'ts-node'
     global: yes
   tags:
     - install
@@ -57,6 +57,13 @@
 - name: Install html language server
   npm:
     name: 'vscode-langservers-extracted'
+    global: yes
+  tags:
+    - install
+    - node
+- name: Install graphql language server
+  npm:
+    name: 'graphql-language-service-cli'
     global: yes
   tags:
     - install
