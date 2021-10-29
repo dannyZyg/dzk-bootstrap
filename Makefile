@@ -26,6 +26,9 @@ zsh: ## Install zsh
 node: ## Install Node, N and npm packages
 	ansible-playbook local.yml -t node --ask-become-pass
 
+npm: ## Install npm packages
+	ansible-playbook local.yml -t npm
+
 vim: ## Install vim and plugins
 	ansible-playbook local.yml -t nvim --ask-become-pass
 

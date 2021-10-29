@@ -5,6 +5,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install Typescript server
   npm:
     name: 'typescript-language-server'
@@ -12,6 +13,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install Typescript
   npm:
     name: 'typescript'
@@ -19,6 +21,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install TS-Node
   npm:
     name: 'ts-node'
@@ -26,6 +29,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install gridsome
   npm:
     name: '@gridsome/cli'
@@ -33,6 +37,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install yaml language server
   npm:
     name: 'yaml-language-server'
@@ -40,6 +45,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install vimscript language server
   npm:
     name: 'vim-language-server'
@@ -47,6 +53,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install bash language server
   npm:
     name: 'bash-language-server'
@@ -54,6 +61,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install html language server
   npm:
     name: 'vscode-langservers-extracted'
@@ -61,6 +69,7 @@
   tags:
     - install
     - node
+    - npm
 - name: Install graphql language server
   npm:
     name: 'graphql-language-service-cli'
@@ -68,3 +77,4 @@
   tags:
     - install
     - node
+    - npm
