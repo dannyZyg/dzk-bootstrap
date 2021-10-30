@@ -5,6 +5,10 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 
   pre_tasks:
+    - name: Show facts available on the system
+      ansible.builtin.debug:
+        var: ansible_facts
+
     - name: get the username running the deploy
       become: false
       local_action: command whoami
