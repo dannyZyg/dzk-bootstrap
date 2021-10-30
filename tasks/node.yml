@@ -5,15 +5,19 @@
   tags:
     - install
     - node
+
 - name: Install N
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: n
     global: yes
   tags:
     - install
     - node
+
 - name: Install correct version of Node
-  shell: n 14
+  become_user: "{{ lookup('vars', 'username') }}"
+  command: "{{ lookup('env', 'HOME') }}/.config/n/bin/n 15"
   tags:
     - install
     - node

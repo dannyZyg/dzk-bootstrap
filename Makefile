@@ -23,11 +23,14 @@ all: ## Run the full ansible playbook
 zsh: ## Install zsh
 	ansible-playbook local.yml -t zsh --ask-become-pass
 
-node: ## Install Node, N and npm packages
+node: ## Install Node, N and a version of node with N
 	ansible-playbook local.yml -t node --ask-become-pass
 
 npm: ## Install npm packages
 	ansible-playbook local.yml -t npm
+
+node-npm: ## Install Node, N and npm packages
+	ansible-playbook local.yml -t node,npm --ask-become-pass
 
 vim: ## Install vim and plugins
 	ansible-playbook local.yml -t nvim --ask-become-pass

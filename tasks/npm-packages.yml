@@ -1,80 +1,80 @@
 - name: Install Yarn
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'yarn'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install Typescript server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'typescript-language-server'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install Typescript
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'typescript'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install TS-Node
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'ts-node'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install gridsome
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: '@gridsome/cli'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install yaml language server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'yaml-language-server'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install vimscript language server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'vim-language-server'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install bash language server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'bash-language-server'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install html language server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'vscode-langservers-extracted'
     global: yes
   tags:
     - install
-    - node
     - npm
 - name: Install graphql language server
+  become_user: "{{ lookup('vars', 'username') }}"
   npm:
     name: 'graphql-language-service-cli'
     global: yes
   tags:
     - install
-    - node
     - npm
