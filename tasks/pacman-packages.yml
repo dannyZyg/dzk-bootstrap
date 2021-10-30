@@ -2,6 +2,7 @@
   become: true
   pacman: name={{item}}
   with_items:
+    - pyenv
     - mpv
     - xclip
     - fwupd
