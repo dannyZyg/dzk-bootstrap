@@ -2,6 +2,7 @@
   become: true
   pacman:
     name: ["nodejs", "npm"]
+  when: ansible_facts['distribution'] == "Archlinux"
   tags:
     - install
     - node

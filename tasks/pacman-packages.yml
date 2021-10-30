@@ -1,5 +1,6 @@
 - name: Install System Packages
   become: true
+  when: ansible_facts['distribution'] == "Archlinux"
   pacman: name={{item}}
   with_items:
     - pyenv
