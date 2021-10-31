@@ -9,7 +9,7 @@
       ansible.builtin.debug:
         var: ansible_facts
 
-    - name: get the username running the deploy
+    - name: Get the username running the deploy
       become: false
       local_action: command whoami
       register: result
@@ -17,14 +17,14 @@
         - debug
         - always
 
-    - name: Set the env var
+    - name: Set the username env var
       set_fact:
         username: "{{ result.stdout }}"
       tags:
         - debug
         - always
 
-    - name: update repositories
+    - name: Update repositories
       become: true
       pacman:
         update_cache: yes

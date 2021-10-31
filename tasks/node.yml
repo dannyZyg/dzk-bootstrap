@@ -1,14 +1,25 @@
-- name: Install nodejs and npm
-  become: true
-  pacman:
-    name: ["nodejs", "npm"]
-  when: ansible_facts['distribution'] == "Archlinux"
+- name: Creates n directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/n"
+    state: directory
   tags:
     - install
     - node
 
-- name: Install N
+- name: Install nodejs and npm on Arch
+  become: true
+  when: ansible_distribution == "Archlinux"
+  pacman:
+    name: ["nodejs", "npm"]
+  tags:
+    - install
+    - node
+
+- name: Install N with npm
   become_user: "{{ lookup('vars', 'username') }}"
+  environment:
+    N_PREFIX: "{{ lookup('env', 'HOME') }}/.config/n"
   npm:
     name: n
     global: yes
@@ -16,7 +27,17 @@
     - install
     - node
 
-- name: Install correct version of Node
+- name: Install node on Mac
+  when: ansible_distribution == "MacOSX"
+  become_user: "{{ lookup('vars', 'username') }}"
+  community.general.homebrew:
+    name: node
+    state: present
+  tags:
+    - install
+    - node
+
+- name: Install desired version of Node using N
   become_user: "{{ lookup('vars', 'username') }}"
   command: "{{ lookup('env', 'HOME') }}/.config/n/bin/n 15"
   tags:

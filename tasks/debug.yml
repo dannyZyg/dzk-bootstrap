@@ -14,3 +14,24 @@
     msg: "'{{ lookup('env', 'USER') | default('nobody', True) }}' is the user."
   tags:
     - debug
+
+- name: Get the brew path
+  become: false
+  when: ansible_distribution == 'MacOSX'
+  command: which brew
+  register: result
+  tags:
+    - debug
+
+- name: Set the brew_location env var
+  when: ansible_distribution == 'MacOSX'
+  set_fact:
+    brew_location: "{{ result.stdout }}"
+  tags:
+    - debug
+
+- name: Debug print out the brew_location var
+  when: ansible_distribution == 'MacOSX'
+  debug: msg="{{ lookup('vars', 'brew_location') }}"
+  tags:
+    - debug
