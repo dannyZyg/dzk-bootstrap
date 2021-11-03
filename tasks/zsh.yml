@@ -12,3 +12,28 @@
     - install
     - dotfiles
     - zsh
+
+- name: Creates packages directory
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/packages"
+    state: directory
+  tags:
+    - install
+    - zsh
+    - dotfiles
+
+- name: Cloning fzf
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: "{{ lookup('env', 'HOME') }}/packages/fzf"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: master
+    depth: 1
+  tags:
+    - install
+    - zsh
+    - dotfiles
