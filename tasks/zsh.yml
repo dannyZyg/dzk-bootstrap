@@ -1,6 +1,7 @@
 - name: Install ZSH
   become: true
   pacman: name=zsh
+  when: ansible_facts['distribution'] == "Archlinux"
   tags:
     - install
     - dotfiles
