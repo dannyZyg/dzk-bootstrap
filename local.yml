@@ -39,3 +39,4 @@
     - include: tasks/node.yml
     - include: tasks/npm-packages.yml
     - include: tasks/nvim.yml
+    - include: tasks/python.yml

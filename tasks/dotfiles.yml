@@ -8,7 +8,6 @@
     accept_hostkey: yes
     version: main
     key_file: "{{ dest_key }}"
-
   tags:
     - install
     - dotfiles
