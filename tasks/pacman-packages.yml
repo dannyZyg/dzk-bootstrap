@@ -4,6 +4,7 @@
   pacman: name={{item}}
   with_items:
     - pyenv
+    - starship
     - mpv
     - xclip
     - fwupd
