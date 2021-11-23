@@ -32,6 +32,7 @@
   tasks:
     - include: tasks/debug.yml
     - include: tasks/ssh.yml
+    - include: tasks/espanso.yml
     - include: tasks/zsh.yml
     - include: tasks/pacman-packages.yml
     - include: tasks/brew.yml

@@ -1,0 +1,21 @@
+- name: Ensure espanso directory exists.
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_facts['distribution'] == "Archlinux"
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.config/espanso"
+    mode: 0700
+    state: directory
+  tags:
+    - espanso
+    - install
+
+- name: Install espanso conf
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_facts['distribution'] == "Archlinux"
+  copy:
+    src: "./.espanso/default.yml"
+    dest: "{{ lookup('env', 'HOME') }}/.config/espanso/default.yml"
+    decrypt: yes
+  tags:
+    - espanso
+    - install
