@@ -9,12 +9,23 @@
     - espanso
     - install
 
-- name: Install espanso conf
+- name: Install espanso conf arch
   become_user: "{{ lookup('vars', 'username') }}"
   when: ansible_facts['distribution'] == "Archlinux"
   copy:
     src: "./.espanso/default.yml"
     dest: "{{ lookup('env', 'HOME') }}/.config/espanso/default.yml"
+    decrypt: yes
+  tags:
+    - espanso
+    - install
+
+- name: Install espanso conf mac
+  become_user: "{{ lookup('vars', 'username') }}"
+  when: ansible_facts['distribution'] == "MacOSX"
+  copy:
+    src: "./.espanso/default.yml"
+    dest: "{{ lookup('env', 'HOME') }}/Library/Preferences/espanso/default.yml"
     decrypt: yes
   tags:
     - espanso
