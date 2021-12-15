@@ -16,7 +16,7 @@
 
     - name: Set espanso directory on MacOSX
       set_fact:
-        espanso_dir: "{{ lookup('env', 'HOME') }}/Library/Preferences/espanso/default.yml"
+        espanso_dir: "{{ lookup('env', 'HOME') }}/Library/Preferences/espanso"
       when: ansible_distribution == 'MacOSX'
       tags:
         - always
