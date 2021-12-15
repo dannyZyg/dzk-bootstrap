@@ -1,11 +1,17 @@
 #!/bin/bash
 
+VAULT_ID=espanso
+
 if [[ "$OSTYPE" = "linux"* ]] ; then
-	ESPANSO_CONF=$XDG_CONFIG_HOME/espanso/default.yml
+	ESPANSO_DIR=$XDG_CONFIG_HOME/espanso
 elif [[ "$OSTYPE" = "darwin"* ]] ; then
-	ESPANSO_CONF=$HOME/Library/Preferences/espanso/default.yml
+	ESPANSO_DIR=$HOME/Library/Preferences/espanso
+else
+	printf "%s\n" "This system is not supported yet..." && exit
 fi
 
-printf "%s %s\n" "Encrypting conf at:" $ESPANSO_CONF
+ESPANSO_CONF=$ESPANSO_DIR/default.yml
 
-ansible-vault encrypt $ESPANSO_CONF --output ./.espanso/default.yml
+cp -r $ESPANSO_DIR .
+
+ansible-vault encrypt --vault-id $VAULT_ID@prompt espanso/default.yml espanso/user/*

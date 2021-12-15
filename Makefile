@@ -41,5 +41,11 @@ ssh: ## Install ssh key
 dotfiles: ## Install dotfiles
 	ansible-playbook local.yml -t dotfiles --ask-vault-pass --ask-become-pass
 
+espanso-unpack: ## Decrypt espanso repo files into the config path
+	ansible-playbook local.yml -t espanso --ask-vault-pass
+
+espanso-pack: ## Encrypt the system espanso files - overwrites repo files
+	./scripts/encrypt-espanso-conf.sh
+
 debug: ## Print out env vars
 	ansible-playbook local.yml -t debug
