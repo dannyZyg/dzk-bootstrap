@@ -3,6 +3,11 @@
   when: ansible_facts['distribution'] == "Archlinux"
   pacman: name={{item}}
   with_items:
+    - xautolock
+    - postgresql-libs
+    - xscape
+    - dmidecode
+    - powertop
     - pyenv
     - starship
     - mpv

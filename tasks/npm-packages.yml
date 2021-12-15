@@ -78,3 +78,11 @@
   tags:
     - install
     - npm
+- name: Install python language server
+  become_user: "{{ lookup('vars', 'username') }}"
+  npm:
+    name: 'pyright'
+    global: yes
+  tags:
+    - install
+    - npm
