@@ -1,13 +1,25 @@
 - hosts: localhost
 
+  gather_facts: True
+
   vars:
     source_key: "./.ssh/id_ed25519"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
 
   pre_tasks:
-    - name: Show facts available on the system
-      ansible.builtin.debug:
-        var: ansible_facts
+    - name: Set espanso directory on Arch
+      set_fact:
+        espanso_dir: "{{ lookup('env', 'HOME') }}/.config/espanso"
+      when: ansible_facts['distribution'] == "Archlinux"
+      tags:
+        - always
+
+    - name: Set espanso directory on MacOSX
+      set_fact:
+        espanso_dir: "{{ lookup('env', 'HOME') }}/Library/Preferences/espanso/default.yml"
+      when: ansible_distribution == 'MacOSX'
+      tags:
+        - always
 
     - name: Get the username running the deploy
       become: false

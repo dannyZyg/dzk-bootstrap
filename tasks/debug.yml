@@ -1,3 +1,20 @@
+- name: Show facts available on the system
+  ansible.builtin.debug:
+    var: ansible_facts
+  tags:
+    - debug
+
+- name: Print the operating system
+  debug: var=ansible_distribution
+  tags:
+    - always
+    - debug
+
+- name: Print espanso directory
+  debug: var=espanso_dir
+  tags:
+    - debug
+
 - name: Debug print out the username var
   debug: msg="{{ lookup('vars', 'username') }}"
   tags:
