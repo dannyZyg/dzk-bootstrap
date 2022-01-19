@@ -1,0 +1,40 @@
+- name: Check is pipx installed
+  shell: command -v pipx
+  register: pipx_exists
+  ignore_errors: yes
+  tags:
+    - pipx
+
+- name: Install pipx mac
+  homebrew:
+    name: pipx
+    state: present
+    path: "/opt/homebrew/bin/brew"
+  ignore_errors: true
+  when: pipx_exists is failed and ansible_distribution == "MacOSX"
+  tags:
+    - pipx
+
+- name: Post install pipx on Mac
+  command:
+    cmd: /opt/homebrew/bin/pipx ensurepath
+  when: pipx_exists and ansible_distribution == "MacOSX"
+  tags:
+    - pipx
+
+- name: Install pipx on Arch
+  when: pipx_exists is failed and ansible_distribution == "Archlinux"
+  pip:
+    name: pipx
+  tags:
+    - pipx
+
+- name: Install pipx packages
+  command:
+    cmd: pipx install {{ item }}
+  with_items:
+    - python-lsp-server[all]
+    - aws-sso-util
+  when: pipx_exists
+  tags:
+    - pipx
