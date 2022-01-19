@@ -86,3 +86,11 @@
   tags:
     - install
     - npm
+- name: Install svelte language server
+  become_user: "{{ lookup('vars', 'username') }}"
+  npm:
+    name: 'svelte-language-server'
+    global: yes
+  tags:
+    - install
+    - npm
