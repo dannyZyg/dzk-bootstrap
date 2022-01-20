@@ -49,3 +49,9 @@ espanso-pack: ## Encrypt the system espanso files - overwrites repo files
 
 debug: ## Print out env vars
 	ansible-playbook local.yml -t debug
+
+pacman-dump: ## Saves installed pacman packages to txt
+	pacman -Qetn | awk '{print $1}' > packages/pacman.txt
+
+pacman-aur-dump: ## Saves installed aur packages to txt
+	pacman -Qetm | awk '{print $1}' > packages/aur.txt
