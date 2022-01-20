@@ -1,85 +1,18 @@
+- name: Get pacman package list
+  when: ansible_facts['distribution'] == "Archlinux"
+  command:
+    cmd: cat ./packages/pacman.txt
+  register: pacman_packages
+  tags:
+    - install
+    - pacman
+    - linux
+
 - name: Install System Packages
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
   pacman: name={{item}}
-  with_items:
-    - xautolock
-    - postgresql-libs
-    - xscape
-    - dmidecode
-    - powertop
-    - pyenv
-    - starship
-    - mpv
-    - xclip
-    - fwupd
-    - dunst
-    - acpi
-    - i3-gaps
-    - exa
-    - bat
-    - lua
-    - luarocks
-    - fzf
-    - ack
-    - adobe-source-han-sans-jp-fonts
-    - aegisub
-    - alacritty
-    - arandr
-    - baobab
-    - bleachbit
-    - blueman
-    - brightnessctl
-    - chromium
-    - code
-    - dbeaver
-    - discord
-    - docker
-    - docker-compose
-    - fcitx-configtool
-    - fcitx-mozc
-    - fcitx-qt5
-    - feh
-    - ffmpeg
-    - ffmpegthumbnailer
-    - filezilla
-    - firefox
-    - firefox-developer-edition
-    - flameshot
-    - gimp
-    - gparted
-    - htop
-    - jq
-    - kdenlive
-    - libreoffice-fresh
-    - lxappearance
-    - mkvtoolnix-gui
-    - mpd
-    - nautilus
-    - ncmpcpp
-    - neofetch
-    - neovim
-    - newsboat
-    - obs-studio
-    - pavucontrol
-    - pulseaudio-bluetooth
-    - pulsemixer
-    - ranger
-    - rclone
-    - redshift
-    - remmina
-    - signal-desktop
-    - sox
-    - sxhkd
-    - thunderbird
-    - tlp
-    - tmux
-    - tree
-    - udiskie
-    - vagrant
-    - youtube-dl
-    - zathura
-    - zathura-pdf-mupdf
+  with_items: "{{ pacman_packages.stdout_lines }}"
   tags:
     - install
     - pacman
