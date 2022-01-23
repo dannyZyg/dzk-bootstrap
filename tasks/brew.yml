@@ -1,6 +1,0 @@
-- name: Install brew
-  become_user: "{{ lookup('env', 'USER') }}"
-  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  when: ansible_distribution == 'MacOSX'
-  tags:
-    - mac
