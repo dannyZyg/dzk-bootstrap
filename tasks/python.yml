@@ -1,92 +1,73 @@
 ## Python 3
-
-- name: Install python version 3.9.0 with pyenv
-  when: ansible_distribution == "Archlinux"
+- name: Install mac pyenv dependencies
   become_user: "{{ lookup('vars', 'username') }}"
-  command: pyenv install -f 3.9.0
+  when: ansible_distribution == "MacOSX"
+  homebrew:
+    name: "{{item}}"
+    state: present
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
+  with_items:
+    - readline
+    - xz
+    - openssl
   tags:
     - install
     - python
-    - python3
 
-- name: Set Python 3.9.0 as global version
-  when: ansible_distribution == "Archlinux"
-  become_user: "{{ lookup('vars', 'username') }}"
-  command: pyenv global 3.9.0
+- name: Check anaconda installed
+  command:
+    cmd: command -v conda
+  register: conda_exists
   tags:
     - install
     - python
-    - python3
 
-- name: pip install virtualenvwrapper
-  when: ansible_distribution == "Archlinux"
+- name: Install conda on mac
   become_user: "{{ lookup('vars', 'username') }}"
-  pip:
-    name: virtualenvwrapper
+  when: ansible_distribution == "MacOSX" and conda_exists is failed
+  homebrew:
+    name: anaconda
+    state: present
+    path: "{{ lookup('vars', 'brew_path') }}/brew"
   tags:
     - install
     - python
-    - python3
 
-- name: Creates virtualenv directory
+- name: Install python version 3.9.9 with pyenv
   become_user: "{{ lookup('vars', 'username') }}"
-  file:
-    path: "{{ lookup('env', 'HOME') }}/.config/virtualenvs"
-    state: directory
+  command: pyenv install -f 3.9.9
+  ignore_errors: true
   tags:
     - install
     - python
-    - python3
 
-- name: Create nvim python3 virtualenv
-  when: ansible_distribution == "Archlinux"
+- name: Set Python 3.9.9 as global version
   become_user: "{{ lookup('vars', 'username') }}"
-  shell: . "{{ lookup('env', 'HOME') }}/.local/bin/virtualenvwrapper.sh" && mkvirtualenv neovim-python-3-9-0 && pip install pynvim
-  environment:
-    WORKON_HOME: "{{ lookup('env', 'HOME') }}/.config/virtualenvs"
+  command: pyenv global 3.9.9
   tags:
     - install
     - python
-    - python3
 
-## Python 2
-
-- name: Install python version 2.7.18 with pyenv
-  when: ansible_distribution == "Archlinux"
+- name: Create conda neovim environments
   become_user: "{{ lookup('vars', 'username') }}"
-  command: pyenv install -f 2.7.18
+  when: conda_exists
+  command: "{{item}}"
+  with_items:
+    - conda create -n neovim-python-2 python=2.7.18
+    - conda create -n neovim-python-3 python=3.8
   tags:
     - install
     - python
-    - python2
 
-- name: Set Python 2.7.18 as global version
-  when: ansible_distribution == "Archlinux"
-  become_user: "{{ lookup('vars', 'username') }}"
-  command: pyenv global 2.7.18
-  tags:
-    - install
-    - python
-    - python2
-
-- name: pip install virtualenvwrapper
-  when: ansible_distribution == "Archlinux"
+- name: Pip install pynvim
   become_user: "{{ lookup('vars', 'username') }}"
   pip:
-    name: virtualenvwrapper
-    executable: pip2
+    name: pynvim
+    executable: "{{item}}"
+    state: latest
+  with_items:
+    - "/usr/local/anaconda3/envs/neovim-python-2/bin/pip"
+    - "/usr/local/anaconda3/envs/neovim-python-3/bin/pip"
   tags:
     - install
     - python
-    - python2
-
-- name: Create nvim python2 virtualenv
-  when: ansible_distribution == "Archlinux"
-  become_user: "{{ lookup('vars', 'username') }}"
-  shell: . "{{ lookup('env', 'HOME') }}/.local/bin/virtualenvwrapper.sh" && mkvirtualenv neovim-python-2-7-18 && pip install pynvim
-  environment:
-    WORKON_HOME: "{{ lookup('env', 'HOME') }}/.config/virtualenvs"
-  tags:
-    - install
-    - python
-    - python2
