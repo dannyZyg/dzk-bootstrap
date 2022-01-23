@@ -17,21 +17,21 @@
 - name: Check anaconda installed
   command:
     cmd: command -v conda
+  ignore_errors: true
   register: conda_exists
   tags:
     - install
     - python
 
-- name: Install conda on mac
+- name: Ensure conda directory exists.
   become_user: "{{ lookup('vars', 'username') }}"
-  when: ansible_distribution == "MacOSX" and conda_exists is failed
-  homebrew:
-    name: anaconda
-    state: present
-    path: "{{ lookup('vars', 'brew_path') }}/brew"
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.config/conda/envs"
+    mode: 0700
+    state: directory
   tags:
-    - install
     - python
+    - install
 
 - name: Install python version 3.9.9 with pyenv
   become_user: "{{ lookup('vars', 'username') }}"
@@ -44,6 +44,7 @@
 - name: Set Python 3.9.9 as global version
   become_user: "{{ lookup('vars', 'username') }}"
   command: pyenv global 3.9.9
+  ignore_errors: true
   tags:
     - install
     - python
@@ -66,8 +67,8 @@
     executable: "{{item}}"
     state: latest
   with_items:
-    - "/usr/local/anaconda3/envs/neovim-python-2/bin/pip"
-    - "/usr/local/anaconda3/envs/neovim-python-3/bin/pip"
+    - "{{ lookup('vars', 'conda_path') }}/envs/neovim-python-2/bin/pip"
+    - "{{ lookup('vars', 'conda_path') }}/envs/neovim-python-3/bin/pip"
   tags:
     - install
     - python

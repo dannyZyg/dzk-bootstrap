@@ -10,6 +10,12 @@
     - always
     - debug
 
+- name: Print the architecture
+  debug: var=ansible_architecture
+  tags:
+    - always
+    - debug
+
 - name: Print espanso directory
   debug: var=espanso_dir
   tags:
