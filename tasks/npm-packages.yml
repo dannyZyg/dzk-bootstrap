@@ -1,96 +1,22 @@
-- name: Install Yarn
+- name: Install global npm packages
   become_user: "{{ lookup('vars', 'username') }}"
   npm:
-    name: 'yarn'
+    name: "{{item}}"
     global: yes
-  tags:
-    - install
-    - npm
-- name: Install Typescript server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'typescript-language-server'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install Typescript
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'typescript'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install TS-Node
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'ts-node'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install gridsome
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: '@gridsome/cli'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install yaml language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'yaml-language-server'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install vimscript language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'vim-language-server'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install bash language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'bash-language-server'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install html language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'vscode-langservers-extracted'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install graphql language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'graphql-language-service-cli'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install python language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'pyright'
-    global: yes
-  tags:
-    - install
-    - npm
-- name: Install svelte language server
-  become_user: "{{ lookup('vars', 'username') }}"
-  npm:
-    name: 'svelte-language-server'
-    global: yes
+  with_items:
+    - 'yarn'
+    - 'typescript-language-server'
+    - 'typescript'
+    - 'ts-node'
+    - 'neovim'
+    - '@gridsome/cli'
+    - 'yaml-language-server'
+    - 'vim-language-server'
+    - 'bash-language-server'
+    - 'vscode-langservers-extracted'
+    - 'graphql-language-service-cli'
+    - 'pyright'
+    - 'svelte-language-server'
   tags:
     - install
     - npm
