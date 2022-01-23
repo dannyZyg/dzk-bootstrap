@@ -21,6 +21,20 @@
       tags:
         - always
 
+    # - name: Set brew path on MacOSX silicon
+    #   set_fact:
+    #     brew_path: "/opt/homebrew/bin"
+    #   when: ansible_distribution == 'MacOSX'
+    #   tags:
+    #     - always
+
+    - name: Set brew path on MacOSX intel
+      set_fact:
+        brew_path: "/usr/local/bin"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
     - name: Get the username running the deploy
       become: false
       local_action: command whoami
@@ -42,14 +56,14 @@
         update_cache: yes
 
   tasks:
-    - include: tasks/debug.yml
-    - include: tasks/ssh.yml
-    - include: tasks/espanso.yml
-    - include: tasks/zsh.yml
-    - include: tasks/pacman-packages.yml
-    - include: tasks/dotfiles.yml
-    - include: tasks/node.yml
-    - include: tasks/npm-packages.yml
-    - include: tasks/nvim.yml
-    - include: tasks/python.yml
-    - include: tasks/pipx.yml
+    - import_tasks: tasks/debug.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/espanso.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/pacman-packages.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/node.yml
+    - import_tasks: tasks/npm-packages.yml
+    - import_tasks: tasks/nvim.yml
+    - import_tasks: tasks/python.yml
+    - import_tasks: tasks/pipx.yml
