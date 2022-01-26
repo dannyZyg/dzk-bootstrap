@@ -17,6 +17,7 @@
     - 'graphql-language-service-cli'
     - 'pyright'
     - 'svelte-language-server'
+    - 'apollo'
   tags:
     - install
     - npm
