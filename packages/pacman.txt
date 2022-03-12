@@ -3,6 +3,7 @@ acpi
 adobe-source-han-sans-jp-fonts
 aegisub
 alacritty
+alsa-utils
 ansible
 arandr
 autoconf
@@ -47,15 +48,16 @@ intel-ucode
 interception-caps2esc
 jq
 jrnl
+kalendar
 kdenlive
 libreoffice-fresh
 linux-headers
 luarocks
 lxappearance
+lxsession
 make
 mkvtoolnix-gui
 mpd
-mpv
 nautilus
 ncmpcpp
 neofetch
@@ -71,6 +73,7 @@ picom
 powertop
 pulsemixer
 pyenv
+python-setuptools-scm
 qt5ct
 ranger
 rclone
