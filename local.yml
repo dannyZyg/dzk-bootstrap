@@ -21,6 +21,27 @@
       tags:
         - always
 
+    - name: Set conda path on Arch
+      set_fact:
+        conda_path: "/opt/anaconda"
+      when: ansible_facts['distribution'] == "Archlinux"
+      tags:
+        - always
+
+    - name: Set conda path on MacOSX silicon
+      set_fact:
+        conda_path: "/opt/homebrew/anaconda3"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'arm64'
+      tags:
+        - always
+
+    - name: Set conda path on MacOSX intel
+      set_fact:
+        conda_path: "/usr/local/anaconda3"
+      when: ansible_distribution == 'MacOSX' and ansible_architecture == 'x86_64'
+      tags:
+        - always
+
     - name: Set brew path on MacOSX silicon
       set_fact:
         brew_path: "/opt/homebrew/bin"
