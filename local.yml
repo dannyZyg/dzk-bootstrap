@@ -67,3 +67,4 @@
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/python.yml
     - import_tasks: tasks/pipx.yml
+    - import_tasks: tasks/system.yml
