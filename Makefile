@@ -38,9 +38,6 @@ vim: ## Install vim and plugins
 ssh: ## Install ssh key
 	ansible-playbook local.yml -t ssh --ask-vault-pass --ask-become-pass
 
-dotfiles: ## Install dotfiles
-	ansible-playbook local.yml -t dotfiles --ask-vault-pass --ask-become-pass
-
 espanso-unpack: ## Decrypt espanso repo files into the config path
 	ansible-playbook local.yml -t espanso --ask-vault-pass
 
@@ -55,3 +52,6 @@ pacman-dump: ## Saves installed pacman packages to txt
 
 pacman-aur-dump: ## Saves installed aur packages to txt
 	pacman -Qetm | cut -d ' ' -f1 > packages/aur.txt
+
+pull-repos: ## Pulls my github repos
+	ansible-playbook local.yml -t repos

@@ -1,0 +1,27 @@
+- name: Ensure dev directory exists.
+  become_user: "{{ lookup('vars', 'username') }}"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/dev"
+    state: directory
+  tags:
+    - dotfiles
+    - repos
+
+- name: Cloning github repos
+  become_user: "{{ lookup('vars', 'username') }}"
+  ansible.builtin.git:
+    repo: "{{ item.url }}"
+    dest: "{{ lookup('env', 'HOME') }}/dev/{{ item.dir }}"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+    key_file: "{{ dest_key }}"
+  with_items:
+    - { url: "git@github.com:dannyZyg/slice-of-life.git", dir: "slice-of-life" }
+    - { url: "git@github.com:dannyZyg/devdoist.git", dir: "devdoist" }
+    - { url: "git@github.com:dannyZyg/dk-personal-site.git", dir: "dk-personal-site" }
+    - { url: "git@github.com:dannyZyg/tup.git", dir: "tup" }
+  tags:
+    - install
+    - repos
