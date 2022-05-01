@@ -10,8 +10,6 @@ else
 	printf "%s\n" "This system is not supported yet..." && exit
 fi
 
-ESPANSO_CONF=$ESPANSO_DIR/default.yml
-
 cp -r $ESPANSO_DIR .
 
-ansible-vault encrypt --vault-id $VAULT_ID@prompt espanso/default.yml espanso/user/*
+ansible-vault encrypt --vault-id $VAULT_ID@prompt espanso/match/* espanso/config/*
