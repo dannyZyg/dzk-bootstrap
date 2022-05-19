@@ -77,6 +77,8 @@ lxappearance
 lxsession
 m4
 make
+maven
+mediainfo
 mkvtoolnix-gui
 mpd
 mpv
@@ -106,6 +108,8 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pkgconf
+poco
+polybar
 postgresql-libs
 powertop
 pulsemixer
@@ -155,6 +159,7 @@ thunderbird
 tlp
 tmux
 tree
+ttf-dejavu
 ttf-fira-code
 ttf-nerd-fonts-symbols
 udiskie
@@ -217,6 +222,7 @@ xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+xournalpp
 xss-lock
 xterm
 youtube-dl
